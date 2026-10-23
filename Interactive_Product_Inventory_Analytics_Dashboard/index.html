@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product Inventory & Analytics Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div><p class="eyebrow">INVENTORY MANAGEMENT</p><h1>Product Inventory <span>& Analytics</span></h1></div>
+    <div class="live"><i></i> Dashboard ready</div>
+  </header>
+  <main class="container">
+    <section class="intro">
+      <div><h2>Inventory overview</h2><p>Track products, value and affordable items in one place.</p></div>
+      <button class="primary" id="openAdd">＋ Add product</button>
+    </section>
+    <section class="stats">
+      <article class="stat"><span>Total products</span><strong id="totalProducts">0</strong><small>Products in inventory</small></article>
+      <article class="stat"><span>Total inventory value</span><strong id="totalValue">$0.00</strong><small>Combined product value</small></article>
+      <article class="stat"><span>Affordable items</span><strong id="affordableCount">0</strong><small>Under $200</small></article>
+      <article class="stat"><span>Premium products</span><strong id="premiumCount">0</strong><small>$500 and above</small></article>
+    </section>
+    <section class="panel">
+      <div class="panel-head">
+        <div><h2>Inventory roster</h2><p>Browse, search and manage your products.</p></div>
+        <div class="filters">
+          <input id="search" type="search" placeholder="Search products…" aria-label="Search products" />
+          <select id="categoryFilter" aria-label="Filter category">
+            <option value="All">All categories</option><option>Budget</option><option>Standard</option><option>Premium</option>
+          </select>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table><thead><tr><th>Product</th><th>Price</th><th>Category</th><th>Added</th><th>Action</th></tr></thead>
+          <tbody id="productRows"></tbody>
+        </table>
+        <div id="empty" class="empty" hidden>No products match your search.</div>
+      </div>
+      <div class="panel-foot"><span id="resultCount">0 products</span><button class="text-button" id="reset">Reset sample data</button></div>
+    </section>
+    <section class="bottom-grid">
+      <article class="panel">
+        <div class="panel-head"><div><h2>Affordable inventory</h2><p>Items priced under $200</p></div><span class="pill">Under $200</span></div>
+        <div id="affordableList" class="affordable-list"></div>
+      </article>
+      <article class="panel">
+        <div class="panel-head"><div><h2>Report summary</h2><p>Formatted analytics output</p></div></div>
+        <pre id="report" class="report"></pre>
+        <button class="secondary" id="copyReport">Copy report</button>
+      </article>
+    </section>
+    <footer>Interactive Product Inventory & Analytics Dashboard <span>•</span> JavaScript mini project</footer>
+  </main>
+
+  <dialog id="addDialog">
+    <form id="productForm">
+      <div class="dialog-head"><div><p class="eyebrow">NEW ENTRY</p><h2>Add product</h2></div><button type="button" class="close" id="closeDialog" aria-label="Close">×</button></div>
+      <label for="productName">Product name</label><input id="productName" required maxlength="60" placeholder="e.g. Monitor" />
+      <label for="productPrice">Price (USD)</label><input id="productPrice" type="number" min="0.01" step="0.01" required placeholder="150.00" />
+      <p class="hint">Budget: under $50 · Standard: $50–$499.99 · Premium: $500+</p>
+      <p id="formError" class="error" role="alert"></p>
+      <div class="dialog-actions"><button type="button" class="secondary" id="cancelAdd">Cancel</button><button class="primary" type="submit">Add to inventory</button></div>
+    </form>
+  </dialog>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
